@@ -1,19 +1,50 @@
 const parentGrid = document.getElementById('grid');
 const childSquares = parentGrid.childNodes;
-let gridSize = 16;
+let gridSize = 16; // default grid size
+let drawColor = '#000000'; // default drawing color
+let isPen = true; // default tool (pen or eraser)
 
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
+// Adjust the size of the grid based on a slider
+const slider = document.getElementById('grid-size-slider');
+const sizeDisplay = document.getElementById('size-display');
+sizeDisplay.innerHTML = `${slider.value}x${slider.value}`;
+
+slider.oninput = () => {
+    sizeDisplay.innerHTML = `${slider.value}x${slider.value}`;
+    gridSize = slider.value;
+}
+
+slider.onchange = () => {
+    createGrid(gridSize);
+}
+
+createGrid(gridSize);
+
+// Change between pen or eraser
+const penButton = document.querySelector('.pen-button');
+const eraserButton = document.querySelector('.eraser-button');
+
+penButton.addEventListener('click', function() {
+    isPen = true;
+})
+
+eraserButton.addEventListener('click', function() {
+    isPen = false;
+})
+
+// Adjust the color of the pen based on a color-picker
+const colorPicker = document.getElementById('draw-color');
+colorPicker.oninput = () => {
+    colorPicker.style.backgroundColor = colorPicker.value;
+    drawColor = colorPicker.value;
+}
+
 const resetButton = document.querySelector('.reset-button');
 resetButton.addEventListener('click', resetColor);
-
-const chooseSizeButton = document.querySelector('.size-button');
-chooseSizeButton.addEventListener('click', () => {
-    gridSize = prompt("Please enter a number:");
-    createGrid(gridSize);
-})
 
 // Create the full grid
 function createGrid(size) {
@@ -27,6 +58,8 @@ function createGrid(size) {
         square.addEventListener('mousedown', changeColor);
         parentGrid.appendChild(square);
     }
+
+    resetColor();
 }
 
 // Change the color of an element when clicked
@@ -35,7 +68,11 @@ function changeColor(e) {
         return;
     }
 
-    e.target.style.backgroundColor = 'black';
+    if (isPen) {
+        e.target.style.backgroundColor = drawColor;
+    } else {
+        e.target.style.backgroundColor = 'white';
+    }
 }
 
 // Reset the sketchpad
