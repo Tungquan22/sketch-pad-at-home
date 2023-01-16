@@ -1,43 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Sketchpad At Home</title>
-        <link rel="stylesheet" href="styles.css">
-        <script src="main.js" defer></script>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sketchpad At Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="main.js" defer></script>
+  </head>
 
-    <body>
-        <div class="header">
-            <h1>Sketchpad at Home</h1>
+  <body>
+    <div class="header">
+      <h1>Sketchpad at Home</h1>
+    </div>
+    <div class="main">
+      <div class="toolbox" id="first-toolbox">
+        <div class="size-selection">
+          <h2 class="title">Choose the size of the sketchpad</h2>
+          <div class="slider-container">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="50"
+              class="slider"
+              id="grid-size-slider"
+            />
+            <output class="output" id="size-display"></output>
+          </div>
         </div>
-        <div class="main">
-            <div class="toolbox" id="first-toolbox">
-                <div class="size-selection">
-                    <h2 class="title">Choose the size of the sketchpad</h2>
-                    <div class="slider-container">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="grid-size-slider">
-                        <output class="output" id="size-display"></output>
-                    </div>
-                </div>
-                <button class="reset-button">Reset</button>
-            </div>
-            <div class="grid" id="grid"></div>
-            <div class="toolbox" id="second-toolbox">
-                <h2>Toolbox</h2>
-                <div class="tool-box">
-                    <button class="pen-button">Pen</button>
-                    <button class="eraser-button">Eraser</button>
-                </div>
-                <h2>Color Picker</h2>
-                <div class="color-selection">
-                    <input type="color" class="color-picker" id="draw-color" value="#000000">
-                </div>
-            </div>
+        <button class="reset-button">Reset</button>
+      </div>
+      <div class="grid" id="grid"></div>
+      <div class="toolbox" id="second-toolbox">
+        <h2>Toolbox</h2>
+        <div class="tool-box">
+          <button class="pen-button">Pen</button>
+          <button class="eraser-button">Eraser</button>
         </div>
-        <div class="footer">
-            <p>Made by Tung Quan Hoang</p>
-            <p>The project is part of <a href="https://www.theodinproject.com/">The Odin Project</a></p>
+        <h2>Color Picker</h2>
+        <div class="color-selection">
+          <input
+            type="color"
+            class="color-picker"
+            id="draw-color"
+            value="#000000"
+          />
         </div>
-    </body>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Made by Tung Quan Hoang</p>
+      <p>
+        The project is part of
+        <a href="https://www.theodinproject.com/">The Odin Project</a>
+      </p>
+    </div>
+  </body>
 </html>
